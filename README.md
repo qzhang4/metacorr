@@ -1,4 +1,4 @@
-# metacorr: data generation code for "Meta-Analysis of Correlation Coefficients: A Cautionary Tale on Treating Measurement Errors".
+# metacorr: data generation code for "Meta-Analysis of Correlation Coefficients: A Cautionary Tale on Treating Measurement Error".
 # DataHomoContNorm.R: simulation studies 1&2 when items are continuous, underlying true scores are normal, and effect sizes are homogeneous.
 # DataHomoContSkew.R: simulation studies 1&2 when items are continuous, underlying true scores are skewed, and effect sizes are homogeneous.
 # DataHeteContNorm.R: simulation studies 1&2 when items are continuous, underlying true scores are normal, and effect sizes are heterogeneous.
