@@ -11,9 +11,9 @@ cond.idx=as.numeric(commandArgs(trailingOnly=TRUE))
 zrho=cond[cond.idx,1]
 I=cond[cond.idx,2]
 ## means and covariance matrix of the bi-variate variables in each study;
-mu=c(0,0) # true score means;
-varx=1 # true score variances;
-vary=1
+#mu=c(0,0) # true score means;
+#varx=1 # true score variances;
+#vary=1
 # factor loading with equal or unequal loadings: reliability is the same (.72,.84,.89 respectively for I=4,8,12);
 faloading=rep(.6,I)
 msmterrvarx=msmterrvary=rep(.55,I)
@@ -48,15 +48,14 @@ for (sz in 1:nrow(Nn)) {
     rhos=(exp(2*zr)-1)/(exp(2*zr)+1)
     while (nn <= NS) {
       # initialize matrices for measurement errors and items;
-      sigma=matrix(c(varx,rhos[nn]*sqrt(varx*vary),rhos[nn]*sqrt(varx*vary),vary),2,2)
+      #sigma=matrix(c(varx,rhos[nn]*sqrt(varx*vary),rhos[nn]*sqrt(varx*vary),vary),2,2)
       msmterrx=msmterry=ix=iy=matrix(NA,N[nn],I)
       # generate the true scores:normal;
       z1u=rchisq(N[nn],1)
-      z1=(z1u-mean(z1u))/sd(z1u)
+      xt=(z1u-1)/sqrt(2)
       z2u=rchisq(N[nn],1)
-      z2=(z2u-mean(z2u))/sd(z2u)
-      xt=z1
-      yt=rhos[nn]*z1+sqrt(1-rhos[nn]^2)*z2
+      z2=(z2u-1)/sqrt(2)
+      yt=rhos[nn]*xt+sqrt(1-rhos[nn]^2)*z2
       msmterrx[,1:I] <- mvrnorm(N[nn],mumsmterrx,sigmamsmterrx) # generate msmt error for x;
       msmterry[,1:I] <- mvrnorm(N[nn],mumsmterry,sigmamsmterry) # generate msmt error for y;
       ix[,1:I]=xt%*%t(as.matrix(faloading))+msmterrx[,1:I] # item scores for x;
